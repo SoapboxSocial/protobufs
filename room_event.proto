@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+message RoomEvent {
+    enum Type {
+        JOINED = 0;
+        LEFT = 1;
+    }
+
+    Type type = 1;
+    string from = 2;
+}
