@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+// All protocol buffers related to the room.
+
 message RoomEvent {
     enum Type {
         JOINED = 0;
