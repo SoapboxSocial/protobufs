@@ -8,6 +8,7 @@ message RoomEvent {
         LEFT = 1;
         ADDED_SPEAKER = 2;
         REMOVED_SPEAKER = 3;
+        CHANGED_OWNER = 4;
     }
 
     Type type = 1;
