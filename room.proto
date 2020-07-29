@@ -12,7 +12,7 @@ message RoomEvent {
 
     Type type = 1;
     string from = 2;
-    string data = 3;
+    bytes data = 3;
 }
 
 message RoomCommand {
