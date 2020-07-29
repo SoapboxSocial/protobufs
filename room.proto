@@ -6,6 +6,8 @@ message RoomEvent {
     enum Type {
         JOINED = 0;
         LEFT = 1;
+        ADDED_SPEAKER = 2;
+        REMOVED_SPEAKER = 3;
     }
 
     Type type = 1;
@@ -14,7 +16,8 @@ message RoomEvent {
 
 message RoomCommand {
     enum Type {
-        EXIT = 0;
+        ADD_SPEAKER = 0;
+        REMOVE_SPEAKER = 1;
     }
     
     Type type = 1;
