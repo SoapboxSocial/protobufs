@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/ephemeral-networks/voicely/pkg/pb";
+option go_package = "pkg/pb";
 
 // All protocol buffers related to the room.
 
