@@ -11,6 +11,9 @@ message RoomEvent {
         ADDED_SPEAKER = 2;
         REMOVED_SPEAKER = 3;
         CHANGED_OWNER = 4;
+        
+        MUTED_SPEAKER = 5;
+        UNMUTED_SPEAKER = 6;
     }
 
     Type type = 1;
@@ -22,6 +25,8 @@ message RoomCommand {
     enum Type {
         ADD_SPEAKER = 0;
         REMOVE_SPEAKER = 1;
+        MUTE_SPEAKER = 2;
+        UNMUTE_SPEAKER = 3;
     }
     
     Type type = 1;
