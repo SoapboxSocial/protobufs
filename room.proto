@@ -14,6 +14,7 @@ message RoomEvent {
         
         MUTED_SPEAKER = 5;
         UNMUTED_SPEAKER = 6;
+        REACTED = 7;
     }
 
     Type type = 1;
@@ -27,6 +28,7 @@ message RoomCommand {
         REMOVE_SPEAKER = 1;
         MUTE_SPEAKER = 2;
         UNMUTE_SPEAKER = 3;
+        REACTION = 4;
     }
     
     Type type = 1;
