@@ -15,6 +15,7 @@ message RoomEvent {
         MUTED_SPEAKER = 5;
         UNMUTED_SPEAKER = 6;
         REACTED = 7;
+        OFFER = 8;
     }
 
     Type type = 1;
@@ -29,6 +30,7 @@ message RoomCommand {
         MUTE_SPEAKER = 2;
         UNMUTE_SPEAKER = 3;
         REACTION = 4;
+        ANSWER = 5;
     }
     
     Type type = 1;
