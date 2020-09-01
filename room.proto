@@ -16,6 +16,7 @@ message RoomEvent {
         UNMUTED_SPEAKER = 6;
         REACTED = 7;
         OFFER = 8;
+        CANDIDATE = 9;
     }
 
     Type type = 1;
@@ -31,6 +32,7 @@ message RoomCommand {
         UNMUTE_SPEAKER = 3;
         REACTION = 4;
         ANSWER = 5;
+        CANDIDATE = 6;
     }
     
     Type type = 1;
