@@ -37,11 +37,12 @@ message JoinReply {
 }
 
 message CreateRequest {
-
+    string name = 1;
 }
 
 message CreateReply {
-
+    int64 id = 1;
+    SessionDescription answer = 2;
 }
 
 message Trickle {
