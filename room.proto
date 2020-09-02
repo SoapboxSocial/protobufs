@@ -9,20 +9,53 @@ service RoomService {
 }
 
 message SignalRequest {
+    message Command {
+        enum Type {
+            ADD_SPEAKER = 0;
+            REMOVE_SPEAKER = 1;
+            MUTE_SPEAKER = 2;
+            UNMUTE_SPEAKER = 3;
+            REACTION = 4;
+        }
+
+        Type type = 1;
+        bytes data = 2;
+    }
+
     oneof payload {
         JoinRequest join = 1;
         CreateRequest create = 2;
         SessionDescription negotiate = 3;
         Trickle trickle = 4;
+        Command command = 5;
     }
 }
 
 message SignalReply {
+
+    message Event {
+        enum Type {
+            JOINED = 0;
+            LEFT = 1;
+            ADDED_SPEAKER = 2;
+            REMOVED_SPEAKER = 3;
+            CHANGED_OWNER = 4;
+            MUTED_SPEAKER = 5;
+            UNMUTED_SPEAKER = 6;
+            REACTED = 7;
+        }
+
+        Type type = 1;
+        int64 from = 2;
+        bytes data = 3;
+    }
+
     oneof payload {
         JoinReply join = 1;
         CreateReply create = 2;
         SessionDescription negotiate = 3;
         Trickle trickle = 4;
+        Event event = 5;
     }
 }
 
@@ -53,38 +86,3 @@ message SessionDescription {
     string type = 1; // "answer" | "offer" | "pranswer" | "rollback"
     bytes sdp = 2;
 }
-
-//message RoomEvent {
-//    enum Type {
-//        JOINED = 0;
-//        LEFT = 1;
-//        ADDED_SPEAKER = 2;
-//        REMOVED_SPEAKER = 3;
-//        CHANGED_OWNER = 4;
-//
-//        MUTED_SPEAKER = 5;
-//        UNMUTED_SPEAKER = 6;
-//        REACTED = 7;
-//        OFFER = 8;
-//        CANDIDATE = 9;
-//    }
-//
-//    Type type = 1;
-//    int64 from = 2;
-//    bytes data = 3;
-//}
-//
-//message RoomCommand {
-//    enum Type {
-//        ADD_SPEAKER = 0;
-//        REMOVE_SPEAKER = 1;
-//        MUTE_SPEAKER = 2;
-//        UNMUTE_SPEAKER = 3;
-//        REACTION = 4;
-//        ANSWER = 5;
-//        CANDIDATE = 6;
-//    }
-//
-//    Type type = 1;
-//    bytes data = 2;
-//}
