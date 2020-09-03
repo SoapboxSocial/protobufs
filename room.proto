@@ -81,7 +81,7 @@ message RoomState {
 
     string name = 1;
     repeated RoomMember members = 2;
-    string role = 3;
+    string role = 3; // @TODO THINK ABOUT ENUM
 }
 
 message CreateRequest {
