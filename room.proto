@@ -9,6 +9,7 @@ service RoomService {
 }
 
 message SignalRequest {
+    // @TODO think about turning these into seperate things
     message Command {
         enum Type {
             ADD_SPEAKER = 0;
@@ -65,8 +66,8 @@ message JoinRequest {
 }
 
 message JoinReply {
-//    string pid = 1;
-    SessionDescription answer = 2;
+    SessionDescription answer = 1;
+    bytes room = 2;
 }
 
 message CreateRequest {
