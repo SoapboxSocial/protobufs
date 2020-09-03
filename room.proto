@@ -67,7 +67,21 @@ message JoinRequest {
 
 message JoinReply {
     SessionDescription answer = 1;
-    bytes room = 2;
+    RoomState room = 2;
+}
+
+message RoomState {
+    message RoomMember {
+        int64 id = 1;
+        string displayName = 2;
+        string image = 3;
+        string role = 4;
+        bool muted = 5;
+    }
+
+    string name = 1;
+    repeated RoomMember members = 2;
+    string role = 3;
 }
 
 message CreateRequest {
