@@ -1,11 +1,14 @@
 syntax = "proto3";
 
+import "google/protobuf/empty.proto";
+
 option go_package = "pkg/rooms/pb";
 
 // All protocol buffers related to the room.
 
 service RoomService {
     rpc Signal(stream SignalRequest) returns (stream SignalReply);
+    rpc ListRooms(google.protobuf.Empty) returns (RoomList);
 }
 
 message SignalRequest {
@@ -70,6 +73,10 @@ message JoinReply {
     RoomState room = 2;
 }
 
+message RoomList {
+    repeated RoomState rooms = 1;
+}
+
 message RoomState {
     message RoomMember {
         int64 id = 1;
@@ -79,13 +86,15 @@ message RoomState {
         bool muted = 5;
     }
 
-    string name = 1;
-    repeated RoomMember members = 2;
-    string role = 3; // @TODO THINK ABOUT ENUM
+    int64 id = 1;
+    string name = 2;
+    repeated RoomMember members = 3;
+    string role = 4; // @TODO THINK ABOUT ENUM
 }
 
 message CreateRequest {
     string name = 1;
+    string session = 2;
 }
 
 message CreateReply {
