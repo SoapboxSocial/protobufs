@@ -1,36 +1,112 @@
 syntax = "proto3";
 
-option go_package = "pkg/pb";
+import "google/protobuf/empty.proto";
+
+option go_package = "pkg/rooms/pb";
 
 // All protocol buffers related to the room.
 
-message RoomEvent {
-    enum Type {
-        JOINED = 0;
-        LEFT = 1;
-        ADDED_SPEAKER = 2;
-        REMOVED_SPEAKER = 3;
-        CHANGED_OWNER = 4;
-        
-        MUTED_SPEAKER = 5;
-        UNMUTED_SPEAKER = 6;
-        REACTED = 7;
-    }
-
-    Type type = 1;
-    int64 from = 2;
-    bytes data = 3;
+service RoomService {
+    rpc Signal(stream SignalRequest) returns (stream SignalReply);
+    rpc ListRooms(google.protobuf.Empty) returns (RoomList);
 }
 
-message RoomCommand {
-    enum Type {
-        ADD_SPEAKER = 0;
-        REMOVE_SPEAKER = 1;
-        MUTE_SPEAKER = 2;
-        UNMUTE_SPEAKER = 3;
-        REACTION = 4;
+message SignalRequest {
+    // @TODO think about turning these into seperate things
+    message Command {
+        enum Type {
+            ADD_SPEAKER = 0;
+            REMOVE_SPEAKER = 1;
+            MUTE_SPEAKER = 2;
+            UNMUTE_SPEAKER = 3;
+            REACTION = 4;
+        }
+
+        Type type = 1;
+        bytes data = 2;
     }
-    
-    Type type = 1;
-    bytes data = 2;
+
+    oneof payload {
+        JoinRequest join = 1;
+        CreateRequest create = 2;
+        SessionDescription negotiate = 3;
+        Trickle trickle = 4;
+        Command command = 5;
+    }
+}
+
+message SignalReply {
+
+    message Event {
+        enum Type {
+            JOINED = 0;
+            LEFT = 1;
+            ADDED_SPEAKER = 2;
+            REMOVED_SPEAKER = 3;
+            CHANGED_OWNER = 4;
+            MUTED_SPEAKER = 5;
+            UNMUTED_SPEAKER = 6;
+            REACTED = 7;
+        }
+
+        Type type = 1;
+        int64 from = 2;
+        bytes data = 3;
+    }
+
+    oneof payload {
+        JoinReply join = 1;
+        CreateReply create = 2;
+        SessionDescription negotiate = 3;
+        Trickle trickle = 4;
+        Event event = 5;
+    }
+}
+
+message JoinRequest {
+    int64 room = 1;
+    string session = 2;
+}
+
+message JoinReply {
+    SessionDescription answer = 1;
+    RoomState room = 2;
+}
+
+message RoomList {
+    repeated RoomState rooms = 1;
+}
+
+message RoomState {
+    message RoomMember {
+        int64 id = 1;
+        string displayName = 2;
+        string image = 3;
+        string role = 4;
+        bool muted = 5;
+    }
+
+    int64 id = 1;
+    string name = 2;
+    repeated RoomMember members = 3;
+    string role = 4; // @TODO THINK ABOUT ENUM
+}
+
+message CreateRequest {
+    string name = 1;
+    string session = 2;
+}
+
+message CreateReply {
+    int64 id = 1;
+    SessionDescription answer = 2;
+}
+
+message Trickle {
+    string init = 1;
+}
+
+message SessionDescription {
+    string type = 1; // "answer" | "offer" | "pranswer" | "rollback"
+    bytes sdp = 2;
 }
