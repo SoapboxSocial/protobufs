@@ -84,6 +84,7 @@ message RoomState {
         string image = 3;
         string role = 4;
         bool muted = 5;
+        int32 ssrc = 6;
     }
 
     int64 id = 1;
