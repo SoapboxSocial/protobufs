@@ -32,6 +32,7 @@ message SignalRequest {
         SessionDescription negotiate = 3;
         Trickle trickle = 4;
         Command command = 5;
+        Invite invite = 6;
     }
 }
 
@@ -110,4 +111,8 @@ message Trickle {
 message SessionDescription {
     string type = 1; // "answer" | "offer" | "pranswer" | "rollback"
     bytes sdp = 2;
+}
+
+message Invite {
+    int64 id = 1;
 }
