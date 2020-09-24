@@ -9,6 +9,8 @@ option go_package = "pkg/rooms/pb";
 service RoomService {
     rpc Signal(stream SignalRequest) returns (stream SignalReply);
     rpc ListRooms(google.protobuf.Empty) returns (RoomList);
+    // @TODO ONCE WE FIGURE OUT AUTHENTICATION
+    rpc ListRoomsV2(Auth) returns (RoomList);
 }
 
 message SignalRequest {
@@ -72,6 +74,10 @@ message JoinRequest {
 message JoinReply {
     SessionDescription answer = 1;
     RoomState room = 2;
+}
+
+message Auth {
+    string session = 1;
 }
 
 message RoomList {
