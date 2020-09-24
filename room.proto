@@ -95,8 +95,14 @@ message RoomState {
 }
 
 message CreateRequest {
+    enum Visibility {
+        PUBLIC = 0;
+        PRIVATE = 1;
+    }
+
     string name = 1;
     string session = 2;
+    Visibility visibility = 3;
 }
 
 message CreateReply {
