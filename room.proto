@@ -22,6 +22,7 @@ message SignalRequest {
             MUTE_SPEAKER = 2;
             UNMUTE_SPEAKER = 3;
             REACTION = 4;
+            LINK_SHARE = 5;
         }
 
         Type type = 1;
@@ -50,6 +51,7 @@ message SignalReply {
             MUTED_SPEAKER = 5;
             UNMUTED_SPEAKER = 6;
             REACTED = 7;
+            LINK_SHARED = 8;
         }
 
         Type type = 1;
