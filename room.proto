@@ -22,6 +22,7 @@ message SignalRequest {
             MUTE_SPEAKER = 2;
             UNMUTE_SPEAKER = 3;
             REACTION = 4;
+            LINK_SHARE = 5;
         }
 
         Type type = 1;
@@ -35,7 +36,6 @@ message SignalRequest {
         Trickle trickle = 4;
         Command command = 5;
         Invite invite = 6;
-        LinkShare linkShare = 7;
     }
 }
 
@@ -51,6 +51,7 @@ message SignalReply {
             MUTED_SPEAKER = 5;
             UNMUTED_SPEAKER = 6;
             REACTED = 7;
+            LINK_SHARED = 8;
         }
 
         Type type = 1;
@@ -128,9 +129,4 @@ message SessionDescription {
 
 message Invite {
     int64 id = 1;
-}
-
-message LinkShare {
-    int64 from = 1;
-    string link = 2;
 }
