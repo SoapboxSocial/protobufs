@@ -35,6 +35,7 @@ message SignalRequest {
         Trickle trickle = 4;
         Command command = 5;
         Invite invite = 6;
+        LinkShare linkShare = 7;
     }
 }
 
@@ -127,4 +128,9 @@ message SessionDescription {
 
 message Invite {
     int64 id = 1;
+}
+
+message LinkShare {
+    int64 from = 1;
+    string link = 2;
 }
