@@ -36,6 +36,7 @@ message SignalRequest {
         Trickle trickle = 4;
         Command command = 5;
         Invite invite = 6;
+        Kick kick = 7;
     }
 }
 
@@ -128,5 +129,9 @@ message SessionDescription {
 }
 
 message Invite {
+    int64 id = 1;
+}
+
+message Kick {
     int64 id = 1;
 }
