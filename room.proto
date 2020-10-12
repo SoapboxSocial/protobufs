@@ -23,6 +23,8 @@ message SignalRequest {
             UNMUTE_SPEAKER = 3;
             REACTION = 4;
             LINK_SHARE = 5;
+            ADD_ADMIN = 6;
+            REMOVE_ADMIN = 7;
         }
 
         Type type = 1;
@@ -37,8 +39,6 @@ message SignalRequest {
         Command command = 5;
         Invite invite = 6;
         Kick kick = 7;
-        AddAdmin addAdmin = 8;
-        RemoveAdmin removeAdmin = 9;
     }
 }
 
@@ -54,6 +54,8 @@ message SignalReply {
             UNMUTED_SPEAKER = 6;
             REACTED = 7;
             LINK_SHARED = 8;
+            ADDED_ADMIN = 9;
+            REMOVED_ADMIN = 10;
         }
 
         Type type = 1;
@@ -67,8 +69,6 @@ message SignalReply {
         SessionDescription negotiate = 3;
         Trickle trickle = 4;
         Event event = 5;
-        AddedAdmin addedAdmin = 6;
-        RemovedAdmin removedAdmin = 7;
     }
 }
 
