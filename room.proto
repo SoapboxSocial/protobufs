@@ -23,6 +23,8 @@ message SignalRequest {
             UNMUTE_SPEAKER = 3;
             REACTION = 4;
             LINK_SHARE = 5;
+            ADD_ADMIN = 6;
+            REMOVE_ADMIN = 7;
         }
 
         Type type = 1;
@@ -48,11 +50,12 @@ message SignalReply {
             LEFT = 1;
             ADDED_SPEAKER = 2;
             REMOVED_SPEAKER = 3;
-            CHANGED_OWNER = 4;
             MUTED_SPEAKER = 5;
             UNMUTED_SPEAKER = 6;
             REACTED = 7;
             LINK_SHARED = 8;
+            ADDED_ADMIN = 9;
+            REMOVED_ADMIN = 10;
         }
 
         Type type = 1;
@@ -133,5 +136,21 @@ message Invite {
 }
 
 message Kick {
+    int64 id = 1;
+}
+
+message AddAdmin {
+    int64 id = 1;
+}
+
+message RemoveAdmin {
+    int64 id = 1;
+}
+
+message AddedAdmin {
+    int64 id = 1;
+}
+
+message RemovedAdmin {
     int64 id = 1;
 }
