@@ -37,6 +37,8 @@ message SignalRequest {
         Command command = 5;
         Invite invite = 6;
         Kick kick = 7;
+        AddAdmin addAdmin = 8;
+        RemoveAdmin removeAdmin = 9;
     }
 }
 
@@ -48,7 +50,6 @@ message SignalReply {
             LEFT = 1;
             ADDED_SPEAKER = 2;
             REMOVED_SPEAKER = 3;
-            CHANGED_OWNER = 4;
             MUTED_SPEAKER = 5;
             UNMUTED_SPEAKER = 6;
             REACTED = 7;
@@ -66,6 +67,8 @@ message SignalReply {
         SessionDescription negotiate = 3;
         Trickle trickle = 4;
         Event event = 5;
+        AddedAdmin addedAdmin = 6;
+        RemovedAdmin removedAdmin = 7;
     }
 }
 
@@ -133,5 +136,21 @@ message Invite {
 }
 
 message Kick {
+    int64 id = 1;
+}
+
+message AddAdmin {
+    int64 id = 1;
+}
+
+message RemoveAdmin {
+    int64 id = 1;
+}
+
+message AddedAdmin {
+    int64 id = 1;
+}
+
+message RemovedAdmin {
     int64 id = 1;
 }
