@@ -90,6 +90,11 @@ message RoomList {
     repeated RoomState rooms = 1;
 }
 
+enum Visibility {
+    PUBLIC = 0;
+    PRIVATE = 1;
+}
+
 message RoomState {
     message RoomMember {
         int64 id = 1;
@@ -104,14 +109,10 @@ message RoomState {
     string name = 2;
     repeated RoomMember members = 3;
     string role = 4; // @TODO THINK ABOUT ENUM
+    Visibility visibility = 5;
 }
 
 message CreateRequest {
-    enum Visibility {
-        PUBLIC = 0;
-        PRIVATE = 1;
-    }
-
     string name = 1;
     string session = 2;
     Visibility visibility = 3;
