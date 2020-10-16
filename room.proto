@@ -14,7 +14,7 @@ service RoomService {
 }
 
 message SignalRequest {
-    // @TODO think about turning these into seperate things
+    // @TODO think about turning these into separated things
     message Command {
         enum Type {
             ADD_SPEAKER = 0;
@@ -25,6 +25,7 @@ message SignalRequest {
             LINK_SHARE = 5;
             ADD_ADMIN = 6;
             REMOVE_ADMIN = 7;
+            RENAME_ROOM = 8;
         }
 
         Type type = 1;
@@ -56,6 +57,7 @@ message SignalReply {
             LINK_SHARED = 8;
             ADDED_ADMIN = 9;
             REMOVED_ADMIN = 10;
+            RENAMED_ROOM = 11;
         }
 
         Type type = 1;
