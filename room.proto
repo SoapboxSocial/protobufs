@@ -74,18 +74,11 @@ message SignalReply {
 
 message JoinRequest {
     int64 room = 1;
-
-    // Deprecated: use auth header instead.
-    string session = 2;
 }
 
 message JoinReply {
     SessionDescription answer = 1;
     RoomState room = 2;
-}
-
-message Auth {
-    string session = 1;
 }
 
 message RoomList {
@@ -116,9 +109,7 @@ message RoomState {
 
 message CreateRequest {
     string name = 1;
-    // Deprecated: use auth header instead.
-    string session = 2;
-    Visibility visibility = 3;
+    Visibility visibility = 2;
 }
 
 message CreateReply {
