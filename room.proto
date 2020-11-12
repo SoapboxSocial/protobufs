@@ -9,9 +9,6 @@ option go_package = "pkg/rooms/pb";
 service RoomService {
     rpc Signal(stream SignalRequest) returns (stream SignalReply);
     rpc ListRooms(google.protobuf.Empty) returns (RoomList);
-
-    // Deprecated: Use ListRooms instead
-    rpc ListRoomsV2(Auth) returns (RoomList);
 }
 
 message SignalRequest {
@@ -77,18 +74,11 @@ message SignalReply {
 
 message JoinRequest {
     int64 room = 1;
-
-    // Deprecated: use auth header instead.
-    string session = 2;
 }
 
 message JoinReply {
     SessionDescription answer = 1;
     RoomState room = 2;
-}
-
-message Auth {
-    string session = 1;
 }
 
 message RoomList {
@@ -119,9 +109,7 @@ message RoomState {
 
 message CreateRequest {
     string name = 1;
-    // Deprecated: use auth header instead.
-    string session = 2;
-    Visibility visibility = 3;
+    Visibility visibility = 2;
 }
 
 message CreateReply {
