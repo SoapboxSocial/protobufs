@@ -9,9 +9,6 @@ option go_package = "pkg/rooms/pb";
 service RoomService {
     rpc Signal(stream SignalRequest) returns (stream SignalReply);
     rpc ListRooms(google.protobuf.Empty) returns (RoomList);
-
-    // Deprecated: Use ListRooms instead
-    rpc ListRoomsV2(Auth) returns (RoomList);
 }
 
 message SignalRequest {
