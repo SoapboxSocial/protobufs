@@ -110,6 +110,7 @@ message RoomState {
 message CreateRequest {
     string name = 1;
     Visibility visibility = 2;
+    int64 group = 3;
 }
 
 message CreateReply {
