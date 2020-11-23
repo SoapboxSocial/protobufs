@@ -100,11 +100,18 @@ message RoomState {
         uint32 ssrc = 6;
     }
 
+    message Group {
+        int64 id = 1;
+        string name = 2;
+        string image = 3;
+    }
+
     int64 id = 1;
     string name = 2;
     repeated RoomMember members = 3;
     string role = 4; // @TODO THINK ABOUT ENUM
     Visibility visibility = 5;
+    Group group = 6;
 }
 
 message CreateRequest {
