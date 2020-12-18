@@ -57,6 +57,7 @@ message SignalReply {
             ADDED_ADMIN = 9;
             REMOVED_ADMIN = 10;
             RENAMED_ROOM = 11;
+            RECORDED_SCREEN = 12;
         }
 
         Type type = 1;
