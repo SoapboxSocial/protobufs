@@ -38,6 +38,7 @@ message SignalRequest {
         Command command = 5;
         Invite invite = 6;
         Kick kick = 7;
+        ScreenRecorded screenRecorded = 8;
     }
 }
 
@@ -56,6 +57,7 @@ message SignalReply {
             ADDED_ADMIN = 9;
             REMOVED_ADMIN = 10;
             RENAMED_ROOM = 11;
+            RECORDED_SCREEN = 12;
         }
 
         Type type = 1;
@@ -157,3 +159,5 @@ message AddedAdmin {
 message RemovedAdmin {
     int64 id = 1;
 }
+
+message ScreenRecorded {}
