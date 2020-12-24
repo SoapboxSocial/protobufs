@@ -38,7 +38,11 @@ message SignalRequest {
         Command command = 5;
         Invite invite = 6;
         Kick kick = 7;
+<<<<<<< HEAD
         MuteUser muteUser = 8;
+=======
+        ScreenRecorded screenRecorded = 8;
+>>>>>>> master
     }
 }
 
@@ -57,7 +61,11 @@ message SignalReply {
             ADDED_ADMIN = 9;
             REMOVED_ADMIN = 10;
             RENAMED_ROOM = 11;
+<<<<<<< HEAD
             MUTED_BY_ADMIN = 12;
+=======
+            RECORDED_SCREEN = 12;
+>>>>>>> master
         }
 
         Type type = 1;
@@ -163,3 +171,5 @@ message RemovedAdmin {
 message MuteUser {
     int64 id = 1;
 }
+
+message ScreenRecorded {}
