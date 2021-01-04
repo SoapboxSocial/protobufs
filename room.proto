@@ -3,170 +3,146 @@ syntax = "proto3";
 import "google/protobuf/empty.proto";
 
 option go_package = "pkg/rooms/pb";
-
-// All protocol buffers related to the room.
-
-service RoomService {
-    rpc Signal(stream SignalRequest) returns (stream SignalReply);
-    rpc ListRooms(google.protobuf.Empty) returns (RoomList);
-}
-
-// @TODO ONLY ROOM RELATED EVENTS GOES HERE
-
-message SignalRequest {
-    // @TODO think about turning these into separated things
-    message Command {
-        enum Type {
-            ADD_SPEAKER = 0;
-            REMOVE_SPEAKER = 1;
-            MUTE_SPEAKER = 2;
-            UNMUTE_SPEAKER = 3;
-            REACTION = 4;
-            LINK_SHARE = 5;
-            ADD_ADMIN = 6;
-            REMOVE_ADMIN = 7;
-            RENAME_ROOM = 8;
-        }
-
-        Type type = 1;
-        bytes data = 2;
-    }
-
-    oneof payload {
-        JoinRequest join = 1;
-        CreateRequest create = 2;
-        SessionDescription negotiate = 3;
-        Trickle trickle = 4;
-        Command command = 5;
-        Invite invite = 6;
-        Kick kick = 7;
-        ScreenRecorded screenRecorded = 8;
-        MuteUser muteUser = 9;
-    }
-}
-
-message SignalReply {
-
-    message Event {
-        enum Type {
-            JOINED = 0;
-            LEFT = 1;
-            ADDED_SPEAKER = 2;
-            REMOVED_SPEAKER = 3;
-            MUTED_SPEAKER = 5;
-            UNMUTED_SPEAKER = 6;
-            REACTED = 7;
-            LINK_SHARED = 8;
-            ADDED_ADMIN = 9;
-            REMOVED_ADMIN = 10;
-            RENAMED_ROOM = 11;
-            RECORDED_SCREEN = 12;
-            MUTED_BY_ADMIN = 13;
-        }
-
-        Type type = 1;
-        int64 from = 2;
-        bytes data = 3;
-    }
-
-    oneof payload {
-        JoinReply join = 1;
-        CreateReply create = 2;
-        SessionDescription negotiate = 3;
-        Trickle trickle = 4;
-        Event event = 5;
-    }
-}
-
-message JoinRequest {
-    int64 room = 1;
-}
-
-message JoinReply {
-    SessionDescription answer = 1;
-    RoomState room = 2;
-}
-
-message RoomList {
-    repeated RoomState rooms = 1;
-}
-
-enum Visibility {
-    PUBLIC = 0;
-    PRIVATE = 1;
-}
-
-message RoomState {
-    message RoomMember {
-        int64 id = 1;
-        string displayName = 2;
-        string image = 3;
-        string role = 4;
-        bool muted = 5;
-        uint32 ssrc = 6;
-    }
-
-    message Group {
-        int64 id = 1;
-        string name = 2;
-        string image = 3;
-    }
-
-    int64 id = 1;
-    string name = 2;
-    repeated RoomMember members = 3;
-    string role = 4; // @TODO THINK ABOUT ENUM
-    Visibility visibility = 5;
-    Group group = 6;
-}
-
-message CreateRequest {
-    string name = 1;
-    Visibility visibility = 2;
-    int64 group = 3;
-    repeated int64 users = 4;
-}
-
-message CreateReply {
-    int64 id = 1;
-    SessionDescription answer = 2;
-}
-
-message Trickle {
-    string init = 1;
-}
-
-message SessionDescription {
-    string type = 1; // "answer" | "offer" | "pranswer" | "rollback"
-    bytes sdp = 2;
-}
-
-message Invite {
-    int64 id = 1;
-}
-
-message Kick {
-    int64 id = 1;
-}
-
-message AddAdmin {
-    int64 id = 1;
-}
-
-message RemoveAdmin {
-    int64 id = 1;
-}
-
-message AddedAdmin {
-    int64 id = 1;
-}
-
-message RemovedAdmin {
-    int64 id = 1;
-}
-
-message MuteUser {
-    int64 id = 1;
-}
-
-message ScreenRecorded {}
+//
+//// All protocol buffers related to the room.
+//
+//service RoomService {
+//    rpc Signal(stream SignalRequest) returns (stream SignalReply);
+////    rpc ListRooms(google.protobuf.Empty) returns (RoomList);
+//}
+//
+//// @TODO ONLY ROOM RELATED EVENTS GOES HERE
+//
+//message SignalRequest {
+//    // @TODO think about turning these into separated things
+//    message Command {
+//        enum Type {
+//            ADD_SPEAKER = 0;
+//            REMOVE_SPEAKER = 1;
+//            MUTE_SPEAKER = 2;
+//            UNMUTE_SPEAKER = 3;
+//            REACTION = 4;
+//            LINK_SHARE = 5;
+//            ADD_ADMIN = 6;
+//            REMOVE_ADMIN = 7;
+//            RENAME_ROOM = 8;
+//        }
+//
+//        Type type = 1;
+//        bytes data = 2;
+//    }
+//
+//    oneof payload {
+//        JoinRequest join = 1;
+//        CreateRequest create = 2;
+//        SessionDescription negotiate = 3;
+//        Trickle trickle = 4;
+//        Command command = 5;
+//        Invite invite = 6;
+//        Kick kick = 7;
+//        ScreenRecorded screenRecorded = 8;
+//        MuteUser muteUser = 9;
+//    }
+//}
+//
+//message SignalReply {
+//
+//    message Event {
+//        enum Type {
+//            JOINED = 0;
+//            LEFT = 1;
+//            ADDED_SPEAKER = 2;
+//            REMOVED_SPEAKER = 3;
+//            MUTED_SPEAKER = 5;
+//            UNMUTED_SPEAKER = 6;
+//            REACTED = 7;
+//            LINK_SHARED = 8;
+//            ADDED_ADMIN = 9;
+//            REMOVED_ADMIN = 10;
+//            RENAMED_ROOM = 11;
+//            RECORDED_SCREEN = 12;
+//            MUTED_BY_ADMIN = 13;
+//        }
+//
+//        Type type = 1;
+//        int64 from = 2;
+//        bytes data = 3;
+//    }
+//
+//    oneof payload {
+//        JoinReply join = 1;
+//        CreateReply create = 2;
+//        SessionDescription negotiate = 3;
+//        Trickle trickle = 4;
+//        Event event = 5;
+//    }
+//}
+//
+//message JoinRequest {
+//    int64 room = 1;
+//}
+//
+//message JoinReply {
+//    SessionDescription answer = 1;
+////    RoomState room = 2;
+//}
+//
+////message RoomList {
+////    repeated RoomState rooms = 1;
+////}
+//
+//enum Visibility {
+//    PUBLIC = 0;
+//    PRIVATE = 1;
+//}
+//
+//message CreateRequest {
+//    string name = 1;
+//    Visibility visibility = 2;
+//    int64 group = 3;
+//    repeated int64 users = 4;
+//}
+//
+//message CreateReply {
+//    int64 id = 1;
+//    SessionDescription answer = 2;
+//}
+//
+//message Trickle {
+//    string init = 1;
+//}
+//
+//message SessionDescription {
+//    string type = 1; // "answer" | "offer" | "pranswer" | "rollback"
+//    bytes sdp = 2;
+//}
+//
+//message Invite {
+//    int64 id = 1;
+//}
+//
+//message Kick {
+//    int64 id = 1;
+//}
+//
+//message AddAdmin {
+//    int64 id = 1;
+//}
+//
+//message RemoveAdmin {
+//    int64 id = 1;
+//}
+//
+//message AddedAdmin {
+//    int64 id = 1;
+//}
+//
+//message RemovedAdmin {
+//    int64 id = 1;
+//}
+//
+//message MuteUser {
+//    int64 id = 1;
+//}
+//
+//message ScreenRecorded {}

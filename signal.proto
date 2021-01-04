@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-// @TODO SIGNALLING RELATED STUFF GOES HERE
-
 option go_package = "pkg/rooms/pb";
+
+// @TODO ADD APP VERSION
 
 service SFU {
     rpc Signal(stream SignalRequest) returns (stream SignalReply) {}
@@ -12,8 +12,9 @@ message SignalRequest {
     string id = 1;
     oneof payload {
         JoinRequest join = 2;
-        bytes description = 3;
-        Trickle trickle = 4;
+        CreateRequest create = 3;
+        bytes description = 4;
+        Trickle trickle = 5;
     }
 }
 
@@ -21,20 +22,39 @@ message SignalReply {
     string id = 1;
     oneof payload {
         JoinReply join = 2;
-        bytes description = 3;
-        Trickle trickle = 4;
-        string iceConnectionState = 5;
-        string error = 6;
+        CreateReply create = 3;
+        bytes description = 4;
+        Trickle trickle = 5;
+        string iceConnectionState = 6;
+        string error = 7;
     }
 }
 
 message JoinRequest {
-    string sid = 1;
-    bytes description = 2;
+    int64 room = 1;
+    SessionDescription description = 2;
 }
 
 message JoinReply {
-    bytes description = 1;
+    SessionDescription description = 1;
+    RoomState room = 2;
+}
+
+message CreateRequest {
+    string name = 1;
+    Visibility visibility = 2;
+    int64 group = 3;
+    repeated int64 users = 4;
+    SessionDescription description = 5;
+}
+
+message CreateReply {
+    SessionDescription description = 1;
+}
+
+message SessionDescription {
+    string type = 1; // "answer" | "offer" | "pranswer" | "rollback"
+    bytes sdp = 2;
 }
 
 message Trickle {
@@ -42,6 +62,36 @@ message Trickle {
         PUBLISHER = 0;
         SUBSCRIBER = 1;
     }
+
     Target target = 1;
     string init = 2;
+}
+
+enum Visibility {
+    PUBLIC = 0;
+    PRIVATE = 1;
+}
+
+message RoomState {
+    message RoomMember {
+        int64 id = 1;
+        string displayName = 2;
+        string image = 3;
+        string role = 4;
+        bool muted = 5;
+        uint32 ssrc = 6;
+    }
+
+    message Group {
+        int64 id = 1;
+        string name = 2;
+        string image = 3;
+    }
+
+    int64 id = 1;
+    string name = 2;
+    repeated RoomMember members = 3;
+    string role = 4; // @TODO THINK ABOUT ENUM
+    Visibility visibility = 5;
+    Group group = 6;
 }
