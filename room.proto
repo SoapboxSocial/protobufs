@@ -11,6 +11,8 @@ service RoomService {
     rpc ListRooms(google.protobuf.Empty) returns (RoomList);
 }
 
+// @TODO ONLY ROOM RELATED EVENTS GOES HERE
+
 message SignalRequest {
     // @TODO think about turning these into separated things
     message Command {
