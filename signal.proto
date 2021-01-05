@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "room.proto";
+
 option go_package = "pkg/rooms/pb";
 
 // @TODO ADD APP VERSION
@@ -65,33 +67,4 @@ message Trickle {
 
     Target target = 1;
     string init = 2;
-}
-
-enum Visibility {
-    PUBLIC = 0;
-    PRIVATE = 1;
-}
-
-message RoomState {
-    message RoomMember {
-        int64 id = 1;
-        string displayName = 2;
-        string image = 3;
-        string role = 4;
-        bool muted = 5;
-        uint32 ssrc = 6;
-    }
-
-    message Group {
-        int64 id = 1;
-        string name = 2;
-        string image = 3;
-    }
-
-    int64 id = 1;
-    string name = 2;
-    repeated RoomMember members = 3;
-    string role = 4; // @TODO THINK ABOUT ENUM
-    Visibility visibility = 5;
-    Group group = 6;
 }
