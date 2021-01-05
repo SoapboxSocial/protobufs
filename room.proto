@@ -75,9 +75,7 @@ message Event {
 
     message InvitedAdmin {}
 
-    message AddedAdmin {
-        int64 id = 1;
-    }
+    message AddedAdmin {}
 
     message RemovedAdmin {
         int64 id = 1;
