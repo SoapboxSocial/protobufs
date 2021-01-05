@@ -66,6 +66,7 @@ message Event {
         RoomState.RoomMember user = 1;
     }
 
+    message Left {}
     message Muted {}
     message Unmuted {}
 
@@ -95,16 +96,17 @@ message Event {
 
     oneof payload {
         Joined joined = 2;
-        Muted muted = 3;
-        Unmuted unmuted = 4;
-        Reacted reacted = 5;
-        LinkShared linkShared = 6;
-        InvitedAdmin invitedAdmin = 7;
-        AddedAdmin addedAdmin = 8;
-        RemovedAdmin removedAdmin = 9;
-        RenamedRoom renamedRoom = 10;
-        RecordedScreen recordedScreen = 11;
-        MutedByAdmin mutedByAdmin = 12;
+        Left left = 3;
+        Muted muted = 4;
+        Unmuted unmuted = 5;
+        Reacted reacted = 6;
+        LinkShared linkShared = 7;
+        InvitedAdmin invitedAdmin = 8;
+        AddedAdmin addedAdmin = 9;
+        RemovedAdmin removedAdmin = 10;
+        RenamedRoom renamedRoom = 11;
+        RecordedScreen recordedScreen = 12;
+        MutedByAdmin mutedByAdmin = 13;
     }
 }
 
