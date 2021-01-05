@@ -59,6 +59,13 @@ message SessionDescription {
     bytes sdp = 2;
 }
 
+message ICECandidate {
+    string candidate = 1;
+    string sdpMid = 2;
+    int64 sdpMLineIndex = 3;
+    string usernameFragment = 4;
+}
+
 message Trickle {
     enum Target {
         PUBLISHER = 0;
@@ -66,5 +73,5 @@ message Trickle {
     }
 
     Target target = 1;
-    string init = 2;
+    ICECandidate iceCandidate = 2;
 }
