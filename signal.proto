@@ -31,7 +31,7 @@ message SignalReply {
 }
 
 message JoinRequest {
-    int64 room = 1;
+    string room = 1;
     SessionDescription description = 2;
 }
 
