@@ -13,7 +13,7 @@ message SignalRequest {
     oneof payload {
         JoinRequest join = 2;
         CreateRequest create = 3;
-        bytes description = 4;
+        SessionDescription description = 4;
         Trickle trickle = 5;
     }
 }
@@ -23,7 +23,7 @@ message SignalReply {
     oneof payload {
         JoinReply join = 2;
         CreateReply create = 3;
-        bytes description = 4;
+        SessionDescription description = 4;
         Trickle trickle = 5;
         string iceConnectionState = 6;
         string error = 7;
