@@ -73,6 +73,8 @@ message Event {
         string link = 1;
     }
 
+    message InvitedAdmin {}
+
     message AddedAdmin {
         int64 id = 1;
     }
@@ -94,10 +96,11 @@ message Event {
         Unmuted unmuted = 3;
         Reacted reacted = 4;
         LinkShared linkShared = 5;
-        AddedAdmin addedAdmin = 6;
-        RemovedAdmin removedAdmin = 7;
-        RenamedRoom renamedRoom = 8;
-        RecordedScreen recordedScreen = 9;
-        MutedByAdmin mutedByAdmin = 10;
+        InvitedAdmin invitedAdmin = 6;
+        AddedAdmin addedAdmin = 7;
+        RemovedAdmin removedAdmin = 8;
+        RenamedRoom renamedRoom = 9;
+        RecordedScreen recordedScreen = 10;
+        MutedByAdmin mutedByAdmin = 11;
     }
 }
