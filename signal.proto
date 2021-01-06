@@ -56,7 +56,7 @@ message CreateReply {
 
 message SessionDescription {
     string type = 1; // "answer" | "offer" | "pranswer" | "rollback"
-    bytes sdp = 2;
+    string sdp = 2;
 }
 
 message ICECandidate {
