@@ -136,7 +136,7 @@ message RoomState {
         string image = 3;
     }
 
-    int64 id = 1;
+    string id = 1;
     string name = 2;
     repeated RoomMember members = 3;
     string role = 4; // @TODO THINK ABOUT ENUM
