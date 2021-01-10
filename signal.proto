@@ -52,6 +52,7 @@ message CreateRequest {
 
 message CreateReply {
     SessionDescription description = 1;
+    string id = 2;
 }
 
 message SessionDescription {
