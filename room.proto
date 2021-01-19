@@ -10,10 +10,15 @@ message RoomQuery {
     int64 id = 1;
 }
 
+message RoomResponse {
+    RoomState room = 1;
+    string error = 2;
+}
+
 service RoomService {
     rpc Signal(stream SignalRequest) returns (stream SignalReply);
     rpc ListRooms(google.protobuf.Empty) returns (RoomList);
-    rpc GetRoom(RoomQuery) returns (RoomState);
+    rpc GetRoom(RoomQuery) returns (RoomResponse);
 }
 
 message SignalRequest {
