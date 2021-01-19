@@ -3,7 +3,6 @@ syntax = "proto3";
 option go_package = "pkg/rooms/pb";
 
 message Command {
-
     message Mute {}
     message Unmute {}
 
