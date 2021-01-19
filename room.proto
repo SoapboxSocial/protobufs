@@ -6,9 +6,19 @@ option go_package = "pkg/rooms/pb";
 
 // All protocol buffers related to the room.
 
+message RoomQuery {
+    int64 id = 1;
+}
+
+message RoomResponse {
+    RoomState room = 1;
+    string error = 2;
+}
+
 service RoomService {
     rpc Signal(stream SignalRequest) returns (stream SignalReply);
     rpc ListRooms(google.protobuf.Empty) returns (RoomList);
+    rpc GetRoom(RoomQuery) returns (RoomResponse);
 }
 
 message SignalRequest {
