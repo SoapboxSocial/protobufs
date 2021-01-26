@@ -3,8 +3,9 @@ syntax = "proto3";
 option go_package = "pkg/rooms/pb";
 
 message Command {
-    message Mute {}
-    message Unmute {}
+    message MuteUpdate {
+        bool muted = 1;
+    }
 
     message Reaction {
         bytes emoji = 1;
@@ -43,18 +44,17 @@ message Command {
     message RecordScreen {}
 
     oneof payload {
-        Mute mute = 1;
-        Unmute unmute = 2;
-        Reaction reaction = 3;
-        LinkShare linkShare = 4;
-        InviteAdmin inviteAdmin = 5;
-        AcceptAdmin acceptAdmin = 6;
-        RemoveAdmin removeAdmin = 7;
-        RenameRoom renameRoom = 8;
-        InviteUser inviteUser = 9;
-        KickUser kickUser = 10;
-        MuteUser muteUser = 11;
-        RecordScreen recordScreen = 12;
+        MuteUpdate muteUpdate = 1;
+        Reaction reaction = 2;
+        LinkShare linkShare = 3;
+        InviteAdmin inviteAdmin = 4;
+        AcceptAdmin acceptAdmin = 5;
+        RemoveAdmin removeAdmin = 6;
+        RenameRoom renameRoom = 7;
+        InviteUser inviteUser = 8;
+        KickUser kickUser = 9;
+        MuteUser muteUser = 10;
+        RecordScreen recordScreen = 11;
     }
 }
 
@@ -65,9 +65,13 @@ message Event {
         RoomState.RoomMember user = 1;
     }
 
-    message Left {}
-    message Muted {}
-    message Unmuted {}
+    message Left {
+        int64 id = 1;
+    }
+
+    message MuteUpdated {
+        bool is_muted = 1;
+    }
 
     message Reacted {
         bytes emoji = 1;
@@ -77,9 +81,13 @@ message Event {
         string link = 1;
     }
 
-    message InvitedAdmin {}
+    message InvitedAdmin {
+        int64 id = 1;
+    }
 
-    message AddedAdmin {}
+    message AddedAdmin {
+        int64 id = 1;
+    }
 
     message RemovedAdmin {
         int64 id = 1;
@@ -89,23 +97,26 @@ message Event {
         string name = 1;
     }
 
-    message RecordedScreen {}
+    message RecordedScreen {
+        int64 id = 1;
+    }
 
-    message MutedByAdmin {}
+    message MutedByAdmin {
+        int64 id = 1;
+    }
 
     oneof payload {
         Joined joined = 2;
         Left left = 3;
-        Muted muted = 4;
-        Unmuted unmuted = 5;
-        Reacted reacted = 6;
-        LinkShared linkShared = 7;
-        InvitedAdmin invitedAdmin = 8;
-        AddedAdmin addedAdmin = 9;
-        RemovedAdmin removedAdmin = 10;
-        RenamedRoom renamedRoom = 11;
-        RecordedScreen recordedScreen = 12;
-        MutedByAdmin mutedByAdmin = 13;
+        MuteUpdated muteUpdated = 4;
+        Reacted reacted = 5;
+        LinkShared linkShared = 6;
+        InvitedAdmin invitedAdmin = 7;
+        AddedAdmin addedAdmin = 8;
+        RemovedAdmin removedAdmin = 9;
+        RenamedRoom renamedRoom = 10;
+        RecordedScreen recordedScreen = 11;
+        MutedByAdmin mutedByAdmin = 12;
     }
 }
 
