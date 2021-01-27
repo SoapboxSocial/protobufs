@@ -4,12 +4,6 @@ import "room.proto";
 
 option go_package = "pkg/rooms/pb";
 
-// @TODO ADD APP VERSION
-
-service SFU {
-    rpc Signal(stream SignalRequest) returns (stream SignalReply) {}
-}
-
 message SignalRequest {
     string id = 1;
     oneof payload {
