@@ -27,7 +27,6 @@ message SignalReply {
         CreateReply create = 3;
         SessionDescription description = 4;
         Trickle trickle = 5;
-        string error = 6;
     }
 }
 
