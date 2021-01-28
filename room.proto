@@ -153,3 +153,16 @@ message RoomState {
     Visibility visibility = 5;
     Group group = 6;
 }
+
+message RoomQuery {
+    string id = 1;
+}
+
+message RoomResponse {
+    RoomState room = 1;
+    string error = 2;
+}
+
+service RoomService {
+    rpc GetRoom(RoomQuery) returns (RoomResponse);
+}

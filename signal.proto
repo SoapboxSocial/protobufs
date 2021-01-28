@@ -15,12 +15,19 @@ message SignalRequest {
 }
 
 message SignalReply {
+    enum Error {
+        CLOSED = 0;
+        FULL = 1;
+        NOT_INVITED = 2;
+    }
+
     string id = 1;
     oneof payload {
         JoinReply join = 2;
         CreateReply create = 3;
         SessionDescription description = 4;
         Trickle trickle = 5;
+        Error error = 6;
     }
 }
 
