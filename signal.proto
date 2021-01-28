@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+import "room.proto";
+
+option go_package = "pkg/rooms/pb";
+
+message SignalRequest {
+    string id = 1;
+    oneof payload {
+        JoinRequest join = 2;
+        CreateRequest create = 3;
+        SessionDescription description = 4;
+        Trickle trickle = 5;
+    }
+}
+
+message SignalReply {
+    enum Error {
+        CLOSED = 0;
+        FULL = 1;
+        NOT_INVITED = 2;
+    }
+
+    string id = 1;
+    oneof payload {
+        JoinReply join = 2;
+        CreateReply create = 3;
+        SessionDescription description = 4;
+        Trickle trickle = 5;
+        Error error = 6;
+    }
+}
+
+message JoinRequest {
+    string room = 1;
+    SessionDescription description = 2;
+}
+
+message JoinReply {
+    SessionDescription description = 1;
+    RoomState room = 2;
+}
+
+message CreateRequest {
+    string name = 1;
+    Visibility visibility = 2;
+    int64 group = 3;
+    repeated int64 users = 4;
+    SessionDescription description = 5;
+}
+
+message CreateReply {
+    SessionDescription description = 1;
+    string id = 2;
+}
+
+message SessionDescription {
+    string type = 1; // "answer" | "offer" | "pranswer" | "rollback"
+    string sdp = 2;
+}
+
+message ICECandidate {
+    string candidate = 1;
+    string sdpMid = 2;
+    int64 sdpMLineIndex = 3;
+    string usernameFragment = 4;
+}
+
+message Trickle {
+    enum Target {
+        PUBLISHER = 0;
+        SUBSCRIBER = 1;
+    }
+
+    Target target = 1;
+    ICECandidate iceCandidate = 2;
+}
