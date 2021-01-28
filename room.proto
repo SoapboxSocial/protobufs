@@ -59,7 +59,7 @@ message Command {
         KickUser kickUser = 9;
         MuteUser muteUser = 10;
         RecordScreen recordScreen = 11;
-        VisibilityUpdate = 12;
+        VisibilityUpdate visibilityUpdate = 12;
     }
 }
 
