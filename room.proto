@@ -172,6 +172,7 @@ message RoomState {
     string role = 4; // @TODO THINK ABOUT ENUM
     Visibility visibility = 5;
     Group group = 6;
+    string link = 7;
 }
 
 message RoomQuery {
