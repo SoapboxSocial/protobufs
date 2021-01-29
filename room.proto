@@ -43,6 +43,10 @@ message Command {
 
     message RecordScreen {}
 
+    message VisibilityUpdate {
+        Visibility visibility = 1;
+    }
+
     oneof payload {
         MuteUpdate muteUpdate = 1;
         Reaction reaction = 2;
@@ -55,6 +59,7 @@ message Command {
         KickUser kickUser = 9;
         MuteUser muteUser = 10;
         RecordScreen recordScreen = 11;
+        VisibilityUpdate visibilityUpdate = 12;
     }
 }
 
@@ -105,6 +110,10 @@ message Event {
         int64 id = 1;
     }
 
+    message VisibilityUpdated {
+        Visibility visibility = 1;
+    }
+
     oneof payload {
         Joined joined = 2;
         Left left = 3;
@@ -117,6 +126,7 @@ message Event {
         RenamedRoom renamedRoom = 10;
         RecordedScreen recordedScreen = 11;
         MutedByAdmin mutedByAdmin = 12;
+        VisibilityUpdated visibilityUpdated = 13;
     }
 }
 
