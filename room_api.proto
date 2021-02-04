@@ -25,5 +25,6 @@ message RoomResponse {
 
 message WelcomeRoomRegisterResponse {
     string id = 1;
-    string error = 2;
+    int64 user_id = 2;
+    string error = 3;
 }
