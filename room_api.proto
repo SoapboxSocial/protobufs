@@ -2,7 +2,6 @@ syntax = "proto3";
 
 option go_package = "pkg/rooms/pb";
 
-import "google/protobuf/empty.proto";
 import "room.proto";
 
 // Handles internal interaction with the room server.
@@ -11,7 +10,7 @@ service RoomService {
     rpc GetRoom(RoomQuery) returns (RoomResponse);
 
     // Registers a welcome room on the server and returns its ID.
-    rpc RegisterWelcomeRoom(google.protobuf.Empty) returns (WelcomeRoomRegisterResponse);
+    rpc RegisterWelcomeRoom(WelcomeRoomRegisterRequest) returns (WelcomeRoomRegisterResponse);
 }
 
 message RoomQuery {
@@ -23,8 +22,11 @@ message RoomResponse {
     string error = 2;
 }
 
+message WelcomeRoomRegisterRequest {
+    int64 user_id = 1;
+}
+
 message WelcomeRoomRegisterResponse {
     string id = 1;
-    int64 user_id = 2;
-    string error = 3;
+    string error = 2;
 }
