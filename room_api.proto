@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option go_package = "pkg/rooms/pb";
+
+import "room.proto";
+
+// Handles internal interaction with the room server.
+service RoomService {
+    // Get a room specified by the ID.
+    rpc GetRoom(RoomQuery) returns (RoomResponse);
+}
+
+message RoomQuery {
+    string id = 1;
+}
+
+message RoomResponse {
+    RoomState room = 1;
+    string error = 2;
+}
