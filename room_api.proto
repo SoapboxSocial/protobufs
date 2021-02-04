@@ -23,6 +23,5 @@ message WelcomeRoomRegisterRequest {
 
 message WelcomeRoomRegisterResponse {
     string id = 1;
-    string error = 2;
 }
 
