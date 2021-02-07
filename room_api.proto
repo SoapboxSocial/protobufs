@@ -8,9 +8,20 @@ import "room.proto";
 service RoomService {
     // Get a room specified by the ID.
     rpc GetRoom(RoomQuery) returns (RoomState);
+
+    // Registers a welcome room on the server and returns its ID.
+    rpc RegisterWelcomeRoom(WelcomeRoomRegisterRequest) returns (WelcomeRoomRegisterResponse);
 }
 
 message RoomQuery {
+    string id = 1;
+}
+
+message WelcomeRoomRegisterRequest {
+    int64 user_id = 1;
+}
+
+message WelcomeRoomRegisterResponse {
     string id = 1;
 }
 
