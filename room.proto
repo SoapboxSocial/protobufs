@@ -47,6 +47,12 @@ message Command {
         Visibility visibility = 1;
     }
 
+    message PinLink {
+        string link = 1;
+    }
+
+    message UnpinLink {}
+
     oneof payload {
         MuteUpdate muteUpdate = 1;
         Reaction reaction = 2;
@@ -60,6 +66,8 @@ message Command {
         MuteUser muteUser = 10;
         RecordScreen recordScreen = 11;
         VisibilityUpdate visibilityUpdate = 12;
+        PinLink pinLink = 13;
+        UnpinLink unpinLink = 14;
     }
 }
 
@@ -114,6 +122,12 @@ message Event {
         Visibility visibility = 1;
     }
 
+    message PinnedLink {
+        string link = 1;
+    }
+
+    message UnpinnedLink {}
+
     oneof payload {
         Joined joined = 2;
         Left left = 3;
@@ -127,6 +141,8 @@ message Event {
         RecordedScreen recordedScreen = 11;
         MutedByAdmin mutedByAdmin = 12;
         VisibilityUpdated visibilityUpdated = 13;
+        PinnedLink pinnedLink = 14;
+        UnpinnedLink unpinnedLink = 15;
     }
 }
 
@@ -162,4 +178,5 @@ message RoomState {
     string role = 4; // @TODO THINK ABOUT ENUM
     Visibility visibility = 5;
     Group group = 6;
+    string link = 7;
 }
