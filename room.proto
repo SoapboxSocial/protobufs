@@ -195,4 +195,5 @@ message RoomState {
     Visibility visibility = 5;
     Group group = 6;
     string link = 7;
+    string mini = 8;
 }
