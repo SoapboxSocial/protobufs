@@ -53,6 +53,12 @@ message Command {
 
     message UnpinLink {}
 
+    message OpenMini {
+        string mini = 1;
+    }
+
+    message CloseMini {}
+
     oneof payload {
         MuteUpdate muteUpdate = 1;
         Reaction reaction = 2;
@@ -68,6 +74,8 @@ message Command {
         VisibilityUpdate visibilityUpdate = 12;
         PinLink pinLink = 13;
         UnpinLink unpinLink = 14;
+        OpenMini openMini = 15;
+        CloseMini closeMini = 16;
     }
 }
 
@@ -128,6 +136,12 @@ message Event {
 
     message UnpinnedLink {}
 
+    message OpenedMini {
+        string mini = 1;
+    }
+
+    message ClosedMini {}
+
     oneof payload {
         Joined joined = 2;
         Left left = 3;
@@ -143,6 +157,8 @@ message Event {
         VisibilityUpdated visibilityUpdated = 13;
         PinnedLink pinnedLink = 14;
         UnpinnedLink unpinnedLink = 15;
+        OpenedMini openedMini = 16;
+        ClosedMini closedMini = 17;
     }
 }
 
@@ -179,4 +195,5 @@ message RoomState {
     Visibility visibility = 5;
     Group group = 6;
     string link = 7;
+    string mini = 8;
 }
