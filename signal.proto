@@ -39,6 +39,7 @@ message JoinRequest {
 message JoinReply {
     SessionDescription description = 1;
     RoomState room = 2;
+    RoomState.RoomMember.Role role = 3;
 }
 
 message CreateRequest {
