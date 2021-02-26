@@ -1,8 +1,10 @@
 syntax = "proto3";
 
-import "room.proto";
+package soapbox.v1;
 
 option go_package = "pkg/rooms/pb";
+
+import "soapbox/v1/room.proto";
 
 message SignalRequest {
     string id = 1;

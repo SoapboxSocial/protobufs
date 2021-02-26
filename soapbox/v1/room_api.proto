@@ -1,8 +1,10 @@
 syntax = "proto3";
 
+package soapbox.v1;
+
 option go_package = "pkg/rooms/pb";
 
-import "room.proto";
+import "soapbox/v1/room.proto";
 
 // Handles internal interaction with the room server.
 service RoomService {

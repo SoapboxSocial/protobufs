@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package soapbox.v1;
+
 option go_package = "pkg/rooms/pb";
 
 message Command {
