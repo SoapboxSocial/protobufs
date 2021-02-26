@@ -7,21 +7,25 @@ import "room.proto";
 // Handles internal interaction with the room server.
 service RoomService {
     // Get a room specified by the ID.
-    rpc GetRoom(RoomQuery) returns (RoomState);
+    rpc GetRoom(GetRoomRequest) returns (GetRoomResponse);
 
     // Registers a welcome room on the server and returns its ID.
-    rpc RegisterWelcomeRoom(WelcomeRoomRegisterRequest) returns (WelcomeRoomRegisterResponse);
+    rpc RegisterWelcomeRoom(RegisterWelcomeRoomRequest) returns (RegisterWelcomeRoomResponse);
 }
 
-message RoomQuery {
+message GetRoomRequest {
     string id = 1;
 }
 
-message WelcomeRoomRegisterRequest {
+message GetRoomResponse {
+    RoomState state = 1;
+}
+
+message RegisterWelcomeRoomRequest {
     int64 user_id = 1;
 }
 
-message WelcomeRoomRegisterResponse {
+message RegisterWelcomeRoomResponse {
     string id = 1;
 }
 

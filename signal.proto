@@ -16,9 +16,9 @@ message SignalRequest {
 
 message SignalReply {
     enum Error {
-        CLOSED = 0;
-        FULL = 1;
-        NOT_INVITED = 2;
+        ERROR_CLOSED = 0;
+        ERROR_FULL = 1;
+        ERROR_NOT_INVITED = 2;
     }
 
     string id = 1;
@@ -62,17 +62,17 @@ message SessionDescription {
 
 message ICECandidate {
     string candidate = 1;
-    string sdpMid = 2;
-    int64 sdpMLineIndex = 3;
-    string usernameFragment = 4;
+    string sdp_mid = 2;
+    int64 sdp_m_line_index = 3;
+    string username_fragment = 4;
 }
 
 message Trickle {
     enum Target {
-        PUBLISHER = 0;
-        SUBSCRIBER = 1;
+        TARGET_PUBLISHER = 0;
+        TARGET_SUBSCRIBER = 1;
     }
 
     Target target = 1;
-    ICECandidate iceCandidate = 2;
+    ICECandidate ice_candidate = 2;
 }

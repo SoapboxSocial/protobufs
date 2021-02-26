@@ -163,19 +163,19 @@ message Event {
 }
 
 enum Visibility {
-    PUBLIC = 0;
-    PRIVATE = 1;
+    VISIBILITY_PUBLIC = 0;
+    VISIBILITY_PRIVATE = 1;
 }
 
 message RoomState {
     message RoomMember {
         enum Role {
-            REGULAR = 0;
-            ADMIN = 1;
+            ROLE_REGULAR = 0;
+            ROLE_ADMIN = 1;
         }
 
         int64 id = 1;
-        string displayName = 2;
+        string display_name = 2;
         string image = 3;
         Role role = 4;
         bool muted = 5;
