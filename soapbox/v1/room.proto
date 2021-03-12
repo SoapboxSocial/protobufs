@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package soapbox.v1;
+
 option go_package = "pkg/rooms/pb";
 
 message Command {
@@ -60,22 +62,22 @@ message Command {
     message CloseMini {}
 
     oneof payload {
-        MuteUpdate muteUpdate = 1;
+        MuteUpdate mute_update = 1;
         Reaction reaction = 2;
-        LinkShare linkShare = 3;
-        InviteAdmin inviteAdmin = 4;
-        AcceptAdmin acceptAdmin = 5;
-        RemoveAdmin removeAdmin = 6;
-        RenameRoom renameRoom = 7;
-        InviteUser inviteUser = 8;
-        KickUser kickUser = 9;
-        MuteUser muteUser = 10;
-        RecordScreen recordScreen = 11;
-        VisibilityUpdate visibilityUpdate = 12;
-        PinLink pinLink = 13;
-        UnpinLink unpinLink = 14;
-        OpenMini openMini = 15;
-        CloseMini closeMini = 16;
+        LinkShare link_share = 3;
+        InviteAdmin invite_admin = 4;
+        AcceptAdmin accept_admin = 5;
+        RemoveAdmin remove_admin = 6;
+        RenameRoom rename_room = 7;
+        InviteUser invite_user = 8;
+        KickUser kick_user = 9;
+        MuteUser mute_user = 10;
+        RecordScreen record_screen = 11;
+        VisibilityUpdate visibility_update = 12;
+        PinLink pin_link = 13;
+        UnpinLink unpin_link = 14;
+        OpenMini open_mini = 15;
+        CloseMini close_mini = 16;
     }
 }
 
@@ -145,37 +147,37 @@ message Event {
     oneof payload {
         Joined joined = 2;
         Left left = 3;
-        MuteUpdated muteUpdated = 4;
+        MuteUpdated mute_updated = 4;
         Reacted reacted = 5;
-        LinkShared linkShared = 6;
-        InvitedAdmin invitedAdmin = 7;
-        AddedAdmin addedAdmin = 8;
-        RemovedAdmin removedAdmin = 9;
-        RenamedRoom renamedRoom = 10;
-        RecordedScreen recordedScreen = 11;
-        MutedByAdmin mutedByAdmin = 12;
-        VisibilityUpdated visibilityUpdated = 13;
-        PinnedLink pinnedLink = 14;
-        UnpinnedLink unpinnedLink = 15;
-        OpenedMini openedMini = 16;
-        ClosedMini closedMini = 17;
+        LinkShared link_shared = 6;
+        InvitedAdmin invited_admin = 7;
+        AddedAdmin added_admin = 8;
+        RemovedAdmin removed_admin = 9;
+        RenamedRoom renamed_room = 10;
+        RecordedScreen recorded_screen = 11;
+        MutedByAdmin muted_by_admin = 12;
+        VisibilityUpdated visibility_updated = 13;
+        PinnedLink pinned_link = 14;
+        UnpinnedLink unpinned_link = 15;
+        OpenedMini opened_mini = 16;
+        ClosedMini closed_mini = 17;
     }
 }
 
 enum Visibility {
-    PUBLIC = 0;
-    PRIVATE = 1;
+    VISIBILITY_PUBLIC = 0;
+    VISIBILITY_PRIVATE = 1;
 }
 
 message RoomState {
     message RoomMember {
         enum Role {
-            REGULAR = 0;
-            ADMIN = 1;
+            ROLE_REGULAR = 0;
+            ROLE_ADMIN = 1;
         }
 
         int64 id = 1;
-        string displayName = 2;
+        string display_name = 2;
         string image = 3;
         Role role = 4;
         bool muted = 5;
