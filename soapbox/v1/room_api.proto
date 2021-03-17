@@ -11,6 +11,12 @@ service RoomService {
     // Get a room specified by the ID.
     rpc GetRoom(GetRoomRequest) returns (GetRoomResponse);
 
+    // List all the currently open rooms.
+    rpc ListRooms(ListRoomsRequest) returns (ListRoomsResponse);
+
+    // Close a room.
+    rpc CloseRoom(CloseRoomRequest) returns (CloseRoomResponse);
+
     // Registers a welcome room on the server and returns its ID.
     rpc RegisterWelcomeRoom(RegisterWelcomeRoomRequest) returns (RegisterWelcomeRoomResponse);
 }
@@ -21,6 +27,20 @@ message GetRoomRequest {
 
 message GetRoomResponse {
     RoomState state = 1;
+}
+
+message ListRoomsRequest {}
+
+message ListRoomsResponse {
+    repeated RoomState rooms = 1;
+}
+
+message CloseRoomRequest {
+    string id = 1;
+}
+
+message CloseRoomResponse {
+    bool success = 1;
 }
 
 message RegisterWelcomeRoomRequest {
