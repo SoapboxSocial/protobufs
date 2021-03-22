@@ -139,7 +139,8 @@ message Event {
     message UnpinnedLink {}
 
     message OpenedMini {
-        string mini = 1;
+        string slug = 1;
+        Mini mini = 2;
     }
 
     message ClosedMini {}
@@ -167,6 +168,18 @@ message Event {
 enum Visibility {
     VISIBILITY_PUBLIC = 0;
     VISIBILITY_PRIVATE = 1;
+}
+
+message Mini {
+    enum Size {
+        SIZE_SMALL = 0;
+        SIZE_REGULAR = 1;
+        SIZE_LARGE = 2;
+    }
+
+    int64 id = 1;
+    string slug = 2;
+    Size size = 3;
 }
 
 message RoomState {
