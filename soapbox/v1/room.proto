@@ -140,7 +140,7 @@ message Event {
     message UnpinnedLink {}
 
     message OpenedMini {
-        string slug = 1;
+        string slug = 1 [deprecated = true];
         RoomState.Mini mini = 2;
     }
 
@@ -211,6 +211,6 @@ message RoomState {
     Visibility visibility = 5;
     Group group = 6;
     string link = 7;
-    string mini_old = 8;
+    string mini_old = 8 [deprecated = true];
     Mini mini = 9;
 }
