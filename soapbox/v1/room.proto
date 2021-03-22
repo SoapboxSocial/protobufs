@@ -57,6 +57,7 @@ message Command {
 
     message OpenMini {
         string mini = 1;
+        int64 id = 2;
     }
 
     message CloseMini {}
