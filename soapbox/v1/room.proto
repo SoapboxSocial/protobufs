@@ -141,7 +141,7 @@ message Event {
 
     message OpenedMini {
         string slug = 1;
-        Mini mini = 2;
+        RoomState.Mini mini = 2;
     }
 
     message ClosedMini {}
@@ -171,18 +171,6 @@ enum Visibility {
     VISIBILITY_PRIVATE = 1;
 }
 
-message Mini {
-    enum Size {
-        SIZE_SMALL = 0;
-        SIZE_REGULAR = 1;
-        SIZE_LARGE = 2;
-    }
-
-    int64 id = 1;
-    string slug = 2;
-    Size size = 3;
-}
-
 message RoomState {
     message RoomMember {
         enum Role {
@@ -204,6 +192,18 @@ message RoomState {
         string image = 3;
     }
 
+    message Mini {
+        enum Size {
+            SIZE_SMALL = 0;
+            SIZE_REGULAR = 1;
+            SIZE_LARGE = 2;
+        }
+
+        int64 id = 1;
+        string slug = 2;
+        Size size = 3;
+    }
+
     string id = 1;
     string name = 2;
     repeated RoomMember members = 3;
@@ -211,5 +211,6 @@ message RoomState {
     Visibility visibility = 5;
     Group group = 6;
     string link = 7;
-    string mini = 8;
+    string mini_old = 8;
+    Mini mini = 9;
 }
