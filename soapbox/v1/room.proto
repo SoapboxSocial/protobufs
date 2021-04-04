@@ -184,6 +184,7 @@ message RoomState {
         Role role = 4;
         bool muted = 5;
         uint32 ssrc = 6;
+        string username = 7;
     }
 
     message Group {
