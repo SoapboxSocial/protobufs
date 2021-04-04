@@ -202,6 +202,7 @@ message RoomState {
         int64 id = 1;
         string slug = 2;
         Size size = 3;
+        string name = 4;
     }
 
     string id = 1;
