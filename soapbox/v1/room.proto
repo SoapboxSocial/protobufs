@@ -187,12 +187,6 @@ message RoomState {
         string username = 7;
     }
 
-    message Group {
-        int64 id = 1;
-        string name = 2;
-        string image = 3;
-    }
-
     message Mini {
         enum Size {
             SIZE_SMALL = 0;
@@ -211,7 +205,6 @@ message RoomState {
     repeated RoomMember members = 3;
     string role = 4; // @TODO THINK ABOUT ENUM
     Visibility visibility = 5;
-    Group group = 6;
     string link = 7;
     string mini_old = 8 [deprecated = true];
     Mini mini = 9;
