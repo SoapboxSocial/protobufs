@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package soapbox.notifications.v1;
+
+option go_package = "pkg/notifications/pb";
+
+message Notification {
+    repeated int64 targets = 1;
+}
