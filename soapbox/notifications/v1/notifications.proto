@@ -4,6 +4,25 @@ package soapbox.notifications.v1;
 
 option go_package = "pkg/notifications/pb";
 
+// type PushNotification struct {
+//	Category   NotificationCategory   `json:"category"`
+//	Alert      Alert                  `json:"alert"`
+//	Arguments  map[string]interface{} `json:"arguments"`
+//	CollapseID string                 `json:"-"`
+//}
+
+//type Alert struct {
+//	Body      string   `json:"body,omitempty"`
+//	Key       string   `json:"loc-key"`
+//	Arguments []string `json:"loc-args"`
+//}
+
 message Notification {
+
+    message PushNotification {
+        string category = 1;
+
+    }
+
     repeated int64 targets = 1;
 }
