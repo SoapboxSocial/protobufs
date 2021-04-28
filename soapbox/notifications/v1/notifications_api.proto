@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+import "soapbox/notifications/v1/notifications.proto";
+
+package soapbox.notifications.v1;
+
+option go_package = "pkg/notifications/pb";
+
+// Handles sending notifications.
+service NotificationService {
+    // Sends a specific notification to specified targets.
+    rpc SendNotification(SendNotificationRequest) returns (SendNotificationResponse);
+}
+
+message SendNotificationRequest {
+    Notification notification = 1;
+}
+
+message SendNotificationResponse {
+    bool success = 1;
+}
