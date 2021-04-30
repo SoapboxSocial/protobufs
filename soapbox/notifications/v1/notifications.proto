@@ -7,6 +7,12 @@ package soapbox.notifications.v1;
 option go_package = "pkg/notifications/pb";
 
 message Notification {
+    message Argument {
+        oneof Value {
+            int64 int = 1;
+            string str = 2;
+        }
+    }
 
     message Alert {
         string body = 1;
@@ -16,6 +22,6 @@ message Notification {
 
     string category = 1;
     Alert alert = 2;
-    map<string, google.protobuf.Any> arguments = 3;
+    map<string, Argument> arguments = 3;
     string collapse_id = 4;
 }
