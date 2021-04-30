@@ -8,7 +8,7 @@ option go_package = "pkg/notifications/pb";
 
 message Notification {
     message Argument {
-        oneof Value {
+        oneof value {
             int64 int = 1;
             string str = 2;
         }
