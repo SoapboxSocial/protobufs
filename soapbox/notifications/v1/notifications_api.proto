@@ -13,7 +13,8 @@ service NotificationService {
 }
 
 message SendNotificationRequest {
-    Notification notification = 1;
+    repeated int64 targets = 1;
+    Notification notification = 2;
 }
 
 message SendNotificationResponse {
