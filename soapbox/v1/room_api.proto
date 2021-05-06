@@ -19,6 +19,9 @@ service RoomService {
 
     // Registers a welcome room on the server and returns its ID.
     rpc RegisterWelcomeRoom(RegisterWelcomeRoomRequest) returns (RegisterWelcomeRoomResponse);
+
+    // Checks if users can join a room.
+    rpc FilterUsersThatCanJoin(FilterUsersThatCanJoinRequest) returns (FilterUsersThatCanJoinResponse);
 }
 
 message GetRoomRequest {
@@ -51,3 +54,10 @@ message RegisterWelcomeRoomResponse {
     string id = 1;
 }
 
+message FilterUsersThatCanJoinRequest {
+    repeated int64 ids = 1;
+}
+
+message FilterUsersThatCanJoinResponse {
+    repeated int64 ids = 1;
+}
