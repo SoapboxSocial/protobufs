@@ -55,7 +55,8 @@ message RegisterWelcomeRoomResponse {
 }
 
 message FilterUsersThatCanJoinRequest {
-    repeated int64 ids = 1;
+    string room = 1;
+    repeated int64 ids = 2;
 }
 
 message FilterUsersThatCanJoinResponse {
